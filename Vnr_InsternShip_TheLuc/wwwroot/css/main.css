@@ -1,0 +1,44 @@
+/* Tab active */
+.tablinks.active {
+    color: rgb(230, 30, 220);
+}
+
+/* tab content */
+.tabcontent {
+    display: none;
+}
+    /* Text*/
+
+    /* tab content active */
+    .tabcontent.active {
+        display: block;
+    }
+
+.col-title {
+    border-bottom: 5px double rgb(188, 254, 23 );
+    margin: 11px 0px 7px 15px;
+}
+
+.main-row {
+    column-gap: 7px;
+    flex-wrap: nowrap;
+    height: 500px;
+    margin-top: 5px;
+}
+
+.top-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+.col-md-6-half {
+    border-left: 1px solid black;
+}
+
+.border-left {
+    box-shadow: inset -8px 5px 4px rgba(88, 88, 88, 0.36);
+}
+
+.border-right {
+    box-shadow: inset 8px 5px 4px rgb(88 88 88 / 36%);
+}

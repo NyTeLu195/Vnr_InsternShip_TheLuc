@@ -1,0 +1,125 @@
+﻿@model Vnr_InsternShip_TheLuc.Models.Home
+@{ 
+
+    var countKhoahoc = from r in Model.listMonHoc
+                       group r by r.KhoaHocID into grp
+                       select new { key = grp.Key, cnt = grp.Count() };
+}
+
+
+    <div class="row main-row">
+        <div class="col-md-8 border-left">
+
+            <div class="col-title">
+
+                <h3 class="top-title">
+                    Khóa học Front End
+                </h3>
+
+            </div>
+            <div class="wrapper_tabcontent">
+                @{
+                    int i = 0;
+                    int a = 0;
+                    int countKH = 0;
+                    string active = "active";
+                    foreach (var khoahoc in Model.listKhoaHoc )
+                    {
+                        a= 0;
+                        if (i != 0 && active == "active") active = "";
+                                <div id="menu-@khoahoc.ID" class="tabcontent @active">
+                                    <div class="row">
+
+                                        @foreach (var c in countKhoahoc)
+                                        {
+                                            if (c.key == khoahoc.ID)
+                                            {
+                                                countKH = c.cnt;
+
+                                            }
+
+                                        }
+                                        @if (a < countKH / 2)
+                                        {
+                                            <div class="col-md-6">
+                                                <ol>
+                                                    @foreach (var monhoc in Model.listMonHoc.Where(p => p.KhoaHocID == khoahoc.ID))
+                                                    {
+                                                        if (a < countKH / 2)
+                                                        {
+                                                            <li>@Html.DisplayFor(modelItem => monhoc.TenMonHoc) </li>
+                                                        }
+                                                        a++;
+                                                    }
+                                                </ol>
+
+                                            </div>
+                                        }
+
+                                        @if (a >= countKH / 2)
+                                        {
+                                            a = 0;
+                                            <div class="col-md-6-half">
+                                                <ol start="@(countKH/2+1)">
+                                                    @foreach (var monhoc in Model.listMonHoc.Where(p => p.KhoaHocID == khoahoc.ID))
+                                                    {
+                                                        if (a >= countKH / 2)
+                                                        {
+                                                            <li>@Html.DisplayFor(modelItem => monhoc.TenMonHoc) </li>
+                                                        }
+                                                        a++;
+                                                    }
+                                                </ol>
+
+                                            </div>
+                                        }
+
+
+
+                                    </div>
+                                 </div>
+                        i++;
+                    }
+                }
+
+
+
+              
+
+              
+            </div>
+        </div>
+
+
+
+        <div class="col-md-4 border-right">
+            <div class="col-title">
+                <h3 class="top-title">
+                    Khóa Học
+                </h3>
+            </div>
+            <ul>
+                @{
+                    i = 0;
+                    active = "active";
+                    foreach (var khoahoc in Model.listKhoaHoc)
+                    {
+                        if ( active == "active" && i != 0) active = "";
+                        <li>
+                            <a class="tablinks @active" data-toggle="tab" href="#menu-@khoahoc.ID">@Html.DisplayFor(modelItem =>khoahoc.TenKhoaHoc)</a>
+                        </li>
+                        i++;
+                    }
+                }
+
+
+
+              
+            </ul>
+        </div>
+
+    </div>
+
+
+
+
